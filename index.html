@@ -4,26 +4,184 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>История веба - WWW</title>
+  <title>Лабораторная работа №3</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" type="text/css" href="style.css" media="screen">
 </head>
 <body>
-&nbsp;<div class="text">
-    <main>
-      <h1>Создание WWW</h1>
-        <p>WWW (Всемирная паутина) является самой популярной службой Интернета, но ее нельзя отождествлять со Всемирной паутиной. Идея ее создания была реализована за четыре года (1989-1992гг.) программистом Тимоти Джон Бернерс-Ли и его коллегами. Хотя, как это часто бывает, сделано это было вовсе не на пустом месте. Например, понятие "гипертекст" первым придумал американский ученый Тед Нельсон еще в 1965 году. Датой же рождения Интернета счиается 29 октября 1969 года, а писатели фантасты задолго предсказывали появление нечто подобного.</p>
+<main>
+  <h2>Продаются букеты:</h2>
+  <div class="flower-container">
+    <div class="flower-row">
+      <div class="flower">
+        <img src="img/1_букет.jpg" alt="Flower 1" title="Радуга чувств - Стоимость: 3.890 ₽">
+        <img src="img/2_букет.jpg" alt="Flower 2" title="Цветоный танец - Стоимость: 6.100 ₽">
+      </div>
+    </div>
+    <div class="flower-row">
+      <div class="flower">
+        <img src="img/3_букет.jpg" alt="Flower 3" title="Золотая осень - Стоимость: 4.400 ₽">
+        <img src="img/4_букет.jpg" alt="Flower 4" title="Розовый рассвет - Стоимость: 4.200 ₽">
+      </div>
+    </div>
+  </div>
+  <form>
+    <input type="text" id="flower-info-input" placeholder="Информация о букете" readonly>
+  </form>
+  <h2>Слайд-шоу цветов</h2>
+  <div class="slideshow" id="flower-slideshow">
+    <img class="slideshow-image" src="img/1_букет.jpg" alt="Slideshow 1">
+    <img class="slideshow-image" src="img/2_букет.jpg" alt="Slideshow 2">
+    <img class="slideshow-image" src="img/3_букет.jpg" alt="Slideshow 3">
+    <img class="slideshow-image" src="img/4_букет.jpg" alt="Slideshow 4">
+  </div>
+  <div class="slideshow-controls">
+    <button id="prev-flower-slide">Предыдущий слайд</button>
+    <button id="next-flower-slide">Следующий слайд</button>
+  </div>
+
+  <h2>Животные:</h2>
+  <div class="animal-names">
+    <div class="show-on-hover">Кот
+      <img src="img/cat.gif" alt="Cat">
+    </div>
+    <div class="show-on-hover">Собака
+      <img src="img/dog.gif" alt="Dog">
+    </div>
+    <div class="show-on-hover">Рыба
+      <img src="img/fish.gif" alt="Fish">
+    </div>
+  </div>
+
+  <h2>Слайд-шоу животных</h2>
+  <div class="slideshow" id="animal-slideshow">
+    <img class="slideshow-image" src="img/cat.gif" alt="Cat">
+    <img class="slideshow-image" src="img/dog.gif" alt="Dog">
+    <img class="slideshow-image" src="img/fish.gif" alt="Fish">
+  </div>
+  <div class="slideshow-controls">
+    <button id="prev-animal-slide">Предыдущий слайд</button>
+    <button id="next-animal-slide">Следующий слайд</button>
+  </div>
+
+  <div class="slideshow-controls">
+    <a href="calc.html">
+      <button>Калькулятор</button>
+    </a>
+    <a href="week.html">
+      <button>Какой сегодня день</button>
+    </a>
+    <a href="life.html">
+      <button>Сколько дней вы прожили</button>
+    </a>
+    <a href="distance.html">
+      <button>Расстояние до начала координат</button>
+    </a>
+    <a href="birthday.html">
+      <button>В какой день вы родились</button>
+    </a>
+    <a href="holidays.html">
+      <button>Колчество дней до каникул</button>
+    </a>
+    <a href="geometry.html">
+      <button>Площадь прямоугольника</button>
+    </a>
+    <a href="picture.html">
+      <button>Генератор страницы</button>
+    </a>
+    <a href="picture2.html">
+      <button>Генератор страницы №2</button>
+    </a>
+    <a href="aboutme.html">
+      <button>Генератор биографии</button>
+    </a>
+    <a href="story.html">
+      <button>Генератор сказок</button>
+    </a>
+  </div>
+</main>
+
+<script>
+  const flowerSlideshowImages = document.querySelectorAll('#flower-slideshow .slideshow-image');
+  const animalSlideshowImages = document.querySelectorAll('#animal-slideshow .slideshow-image');
+  let currentFlowerSlide = 0;
+
+  function showFlowerSlide() {
+    flowerSlideshowImages.forEach((image, index) => {
+      if (index === currentFlowerSlide) {
+        image.style.opacity = 1;
+      } else {
+        image.style.opacity = 0;
+      }
+    });
+  }
+
+  const prevFlowerSlideButton = document.getElementById('prev-flower-slide');
+  const nextFlowerSlideButton = document.getElementById('next-flower-slide');
+  prevFlowerSlideButton.addEventListener('click', () => {
+    currentFlowerSlide = (currentFlowerSlide - 1 + flowerSlideshowImages.length) % flowerSlideshowImages.length;
+    showFlowerSlide();
+  });
+  nextFlowerSlideButton.addEventListener('click', () => {
+    currentFlowerSlide = (currentFlowerSlide + 1) % flowerSlideshowImages.length;
+    showFlowerSlide();
+  });
+
+  // Добавим слайд-шоу для животных
+  const prevAnimalSlideButton = document.getElementById('prev-animal-slide');
+  const nextAnimalSlideButton = document.getElementById('next-animal-slide');
+  let currentAnimalSlide = 0;
+
+  function showAnimalSlide() {
+    animalSlideshowImages.forEach((image, index) => {
+      if (index === currentAnimalSlide) {
+        image.style.opacity = 1;
+      } else {
+        image.style.opacity = 0;
+      }
+    });
+  }
+
+  prevAnimalSlideButton.addEventListener('click', () => {
+    currentAnimalSlide = (currentAnimalSlide - 1 + animalSlideshowImages.length) % animalSlideshowImages.length;
+    showAnimalSlide();
+  });
+  nextAnimalSlideButton.addEventListener('click', () => {
+    currentAnimalSlide = (currentAnimalSlide + 1) % animalSlideshowImages.length;
+    showAnimalSlide();
+  });
+
+  // Показать начальный слайд
+  showFlowerSlide();
+  showAnimalSlide();
   
-        </details>&nbsp;<h2>Хронология становления веба</h2>
-          <p class="news"><span class="date">25.12.1990 - </span>Первый в мире браузер</p>
-          <p class="news"><span class="date">06.08.1991 - </span>Первый в мире сайт</p>
-          <p class="news"><span class="date">01.10.1994 - </span>World Wide Web Consortium (W3C)</p>
-          <p class="news"><span class="date">17.10.1994 - </span>Perl 5</p>
-          <p class="news"><span class="date">Начало 1995 года - </span>Apache HTTP Server</p>
-          <p class="news"><span class="date">23.05.1995 - </span>MySQL</p>
-          <p class="news"><span class="date">08.06.1995 - </span>Personal Home Page (PHP 1.0)</p>
-          <p class="news"><span class="date">17.12.1996 - </span>Cascading Style Sheets (CSS1)</p>
-    </main>
-  </div> 
+  // Добавим обработчики событий для отображения информации о букетах при наведении
+  const flowers = document.querySelectorAll('.flower img');
+  const flowerInfoInput = document.getElementById('flower-info-input');
+
+  flowers.forEach((flower, index) => {
+    flower.addEventListener('mouseover', () => {
+      flowerInfoInput.value = flower.title.replace(/\n/g, ' ');
+    });
+
+    flower.addEventListener('mouseout', () => {
+      flowerInfoInput.value = '';
+    });
+  });
+
+  /* Обработчики событий для показа изображений при наведении */
+  const animalDescriptions = document.querySelectorAll('.show-on-hover');
+
+  animalDescriptions.forEach((description, index) => {
+    const animalImage = description.querySelector('img');
+    description.addEventListener('mouseover', () => {
+      animalImage.style.display = 'block';
+    });
+
+    description.addEventListener('mouseout', () => {
+      animalImage.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>

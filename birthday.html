@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>В какой день вы родились</title>
+  <style>
+    body {
+      background: linear-gradient(rgb(255, 222, 252), 77%, rgb(134, 81, 89));
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .date-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    h1 {
+      color: #993333;
+    }
+    .back-button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="date-container">
+    <h1>Введите дату вашего рождения</h1>
+    <p>День:</p>
+    <input type="number" id="day" placeholder="День">
+    <p>Месяц:</p>
+    <input type="number" id="month" placeholder="Месяц">
+    <p>Год:</p>
+    <input type="number" id="year" placeholder="Год">
+    <button id="calculate">Рассчитать</button>
+    <p id="result"></p>
+  </div>
+  <div class="back-button">
+    <a href="index.html">
+      <button>Вернуться на предыдущую страницу</button>
+    </a>
+  </div>
+  <script>
+    function calculateDate() {
+      const day = parseInt(document.getElementById('day').value);
+      const month = parseInt(document.getElementById('month').value);
+      const year = parseInt(document.getElementById('year').value);
+
+      if (isNaN(day) || isNaN(month) || isNaN(year)) {
+        document.getElementById('result').textContent = 'Пожалуйста, введите корректную дату.';
+        return;
+      }
+
+      const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+      const months = [
+        'Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня',
+        'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'
+      ];
+
+      const date = new Date(year, month - 1, day); // Месяцы в JavaScript начинаются с 0 (0 - январь, 11 - декабрь)
+      const dayOfWeek = daysOfWeek[date.getDay()];
+      const monthName = months[month - 1]; // Месяцы в массиве начинаются с 0
+
+      document.getElementById('result').textContent = `День недели: ${dayOfWeek}, ${day} ${monthName} ${year} года`;
+    }
+
+    const calculateButton = document.getElementById('calculate');
+    calculateButton.addEventListener('click', calculateDate);
+  </script>
+</body>
+</html>

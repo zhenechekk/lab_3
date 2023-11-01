@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Какой сегодня день</title>
+  <style>
+    body {
+      background: linear-gradient(rgb(255, 222, 252), 77%, rgb(134, 81, 89));
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .date-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .back-button {
+    justify-content: center;
+      align-items: center;
+
+    }
+    h1 {
+      color: #993333;
+    }
+  </style>
+</head>
+<body>
+  <div class="date-container">
+    <h1>Текущая дата и время:</h1>
+    <p id="date-info"></p>
+    <div class="back-button">
+        <a href="index.html">
+        <button>Вернуться на предыдущую страницу</button>
+        </a>
+        </div>
+  </div>
+
+  
+
+  <script>
+    const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+    const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+    const currentDate = new Date();
+    const dayOfWeek = daysOfWeek[currentDate.getDay()];
+    const dayOfMonth = currentDate.getDate();
+    const month = months[currentDate.getMonth()];
+    const year = currentDate.getFullYear();
+
+    const dateInfo = `${dayOfWeek}, ${dayOfMonth} ${month} ${year}`;
+    document.getElementById('date-info').textContent = dateInfo;
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор сказок</title>
+  <style>
+    body {
+      background: linear-gradient(rgb(255, 222, 252), 77%, rgb(134, 81, 89));
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .back-button {
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: #993333;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Генератор сказок</h1>
+
+    <form id="storybook-form">
+      <label for="hero">Главный герой:</label>
+      <input type="text" id="hero" placeholder="Введите имя главного героя" required>
+
+      <label for="villain">Злодей:</label>
+      <input type="text" id="villain" placeholder="Введите имя злодея" required>
+
+      <label for="place">Место действия:</label>
+      <input type="text" id="place" placeholder="Введите место действия" required>
+
+      <label for="treasure">Сокровище:</label>
+      <input type="text" id="treasure" placeholder="Введите сокровище" required>
+
+      <label for="moral">Мораль:</label>
+      <input type="text" id="moral" placeholder="Введите мораль сказки" required>
+
+      <button type="reset">Сброс</button>
+      <button type="submit">Сгенерировать сказку</button>
+    </form>
+  </div>
+
+  <script>
+    const storybookForm = document.getElementById('storybook-form');
+
+    storybookForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const hero = document.getElementById('hero').value;
+      const villain = document.getElementById('villain').value;
+      const place = document.getElementById('place').value;
+      const treasure = document.getElementById('treasure').value;
+      const moral = document.getElementById('moral').value;
+
+      const storyHTML = `
+        <html>
+        <head>
+          <title>Сказка</title>
+          <style>
+            body {
+              background: linear-gradient(rgb(255, 222, 252), 77%, rgb(134, 81, 89));
+              font-family: Arial, sans-serif;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Сказка</h1>
+          <p>Жили-были в мире герой по имени ${hero} и злодей по имени ${villain}. События сказки разворачивались в потрясающем месте под названием ${place}.</p>
+          <p>В сокровищнице, глубоко внутри горы, спрятано было волшебное сокровище - ${treasure}. Герой и злодей решили одновременно найти его.</p>
+          <p>В их стремлении достичь сокровища они столкнулись друг с другом, и началась великая битва. Но в конце-концов они поняли, что борьба не приведет к добру, и согласились поделиться сокровищем.</p>
+          <p>И так, сокровище оказалось не так важным, как мораль этой истории: ${moral}.</p>
+          <button onclick="window.close()">Закрыть</button>
+        </body>
+        </html>
+      `;
+
+      const newWindow = window.open();
+      newWindow.document.write(storyHTML);
+      newWindow.document.close();
+    });
+
+    storybookForm.addEventListener('reset', function () {
+      storybookForm.reset();
+    });
+  </script>
+  <a href="index.html" class="back-button">
+    <button>Вернуться на основную страницу</button>
+  </a>
+</body>
+</html>
